@@ -1,0 +1,179 @@
+{% extends 'reviewpost/base.html' %}
+{% load static %}
+{% block content %}
+<div class="preload">
+    <img class="airplane" src="{% static 'images/LogoMakr-2yVqk6.png' %}" alt="airplane">
+    <h3>please wait...</h3>
+    <img class="cloud1" src="{% static 'images/LogoMakr-4xuIuN.png' %}" alt="cloud1">
+    <img class="cloud2" src="{% static 'images/LogoMakr-4xuIuN.png' %}">
+    <img class="cloud3" src="{% static 'images/LogoMakr-4xuIuN.png' %}" alt="cloud3">
+  </div>  
+
+
+  <div class="cd-header">
+
+    
+    <div class="header-wrapper">
+        <div class="logo-wrap">
+            <a href="/" class="hover-target"><span>Meal Planning</span>NoteBook</a>
+        </div>
+        <div class="nav-but-wrap">
+            <div class="menu-icon hover-target">
+                <span class="menu-icon__line menu-icon__line-left"></span>
+                <span class="menu-icon__line"></span>
+                <span class="menu-icon__line menu-icon__line-right"></span>
+            </div>					
+        </div>					
+    </div>				
+</div>
+
+<div class="nav">
+    <div class="nav__content">
+        <ul class="nav__list">
+            <li class="nav__list-item"><a href="/" class="hover-target">home</a></li>
+            <li class="nav__list-item"><a href="{% url 'cpost' %}" class="hover-target">Create Recipe</a></li>
+            <li class="nav__list-item"><a href="{% url 'about' %}" class="hover-target">My Profile</a></li>
+
+            <li class="nav__list-item"><form method="POST" action="{% url 'logoutuser' %}">
+                {% csrf_token %}
+            <button type="submit">Log Out</button></form></li>
+        </ul>
+    </div>
+</div>		
+
+<div class="section full-height over-hide">	
+    <div class="switch-wrap">
+        <div id="switch" class="hover-target">
+            <div id="circle"></div>
+        </div>
+        <p><span>dark</span> - <span>light</span></p>
+        
+    </div>
+  
+      </div>
+
+</div>
+    
+
+<div class='cursor' id="cursor"></div>
+<div class='cursor2' id="cursor2"></div>
+<div class='cursor3' id="cursor3"></div>
+
+<div id="recipe">   
+    {% for i in allpost %}
+    <div id="section">
+    <div id="username"> 
+        <img src="{{ i.user.profile.profile_pic.url }}" alt="user image" width="40px" id="reviewimg1"> 
+      {{ i.user }} 
+    </div>
+
+    <div id="rdate"> 
+        <small> {{ i.date_created }} </small> 
+    </div>
+   
+    <a href="{% url 'dpost' i.sno %}">
+        <div id="cname"> {{ i.title|safe|truncatechars:50 }} </div>
+    </a> 
+
+    <div id="reviewimg2">
+        <img src="{{ i.photos.url }}" alt="a" width="200px"> 
+    </div>
+
+    </div>
+    <br><br><br>
+{% endfor %}
+
+<style>
+
+.searchBox {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform:  translate(-50%,50%);
+    background: #695d6e;
+    height: 40px;
+    border-radius: 40px;
+    padding: 10px;
+    
+}
+    
+.searchBox:hover > .searchInput {
+    width: 240px;
+padding: 0 6px;
+}
+    
+.searchBox:hover > .searchButton {
+  background: white;
+  color : #2f3640;
+}
+
+.searchButton {
+    margin-top: -10px;
+    color: white;
+    float: right;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #dfc8e9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.6s;
+}
+    
+.searchInput {
+    border:none;
+    background: none;
+    outline:none;
+    float:left;
+    padding: 0;
+    color: white;
+    font-size: 16px;
+    transition: 0.4s;
+    line-height: 20px;
+    width: 0px;
+    
+}
+    
+@media screen and (max-width: 620px) {
+.searchBox:hover > .searchInput {
+    width: 150px;
+    padding: 0 6px;
+}
+}  
+</style>
+<form method="GET" action="{% url 'search' %}" >
+    <div class="searchBox">
+    <input class="searchInput" type="search" name="query" placeholder="Search">
+    <button type="submit" class="searchButton">
+        <img src="{% static 'images/search.png' %}" width="25">
+    </button>
+    </div>
+</form>
+</div>
+
+    
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

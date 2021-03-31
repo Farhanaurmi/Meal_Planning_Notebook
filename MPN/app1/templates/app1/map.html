@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <title>Neighborhood Food Maps</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <style type="text/css">
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 70%;
+        width:100%;
+      }
+      #map2{
+        margin-left: 90%;
+        color:aquamarine;
+        font-size: larger;
+        font-weight: bold;
+        border: 0.5px  solid grey;
+        padding: 3px;
+        box-shadow: 0px 5px 5px 0px rgb(54, 53, 53);
+      }
+      #maptitle{
+        margin-left: 5%;
+        margin-top: 1.5%;
+        color:aquamarine;
+        font-size: x-large;
+        font-weight: normal;
+        border: 0.5px  solid grey;
+        padding: 3px;
+        box-shadow: 0px 5px 5px 0px rgb(54, 53, 53);
+      }
+
+      /* Optional: Makes the sample page fill the window. */
+      html,
+      body {
+        background-color:#48404d;
+        
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script>
+      function initMap() {
+        const myLatLng = { lat: 23.8103, lng: 90.4125 };
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 15,
+          center: myLatLng,
+        });
+        new google.maps.Marker({
+          position: myLatLng,
+          map,
+          title: "Hello World!",
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <div id="maptitle">Neighborhood Food Maps</div><br> <br>
+   <a href="/"><div id="map2">Home</div></a>  <br>
+    <div id="map"></div>
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqU5DY--IrTQd_wnabEhnSehi5oywLsHI&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>
+    
+  </body>
+</html>

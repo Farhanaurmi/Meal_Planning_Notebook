@@ -1,0 +1,195 @@
+{% load static %}
+{% load widget_tweaks %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Untitled-1.css">
+    <title>Document</title>
+    <style>
+        *{ box-sizing:border-box; }
+
+body{ 
+    background-color: #594f5e; 
+    }
+.container 		{ 
+  font-family:'Roboto';
+  width:600px; 
+  margin:30px auto 0; 
+  display:block; 
+  background:white;
+  padding:10px 50px 50px;
+  border: 0.5px solid rgb(112, 112, 112);
+  box-shadow: 5px 5px gray;
+}
+h2 		 { 
+  text-align:center; 
+  margin-bottom:50px; 
+}
+
+a{
+    text-decoration: none;
+}
+
+#map2{
+        margin-left: 200px;
+        color:rgb(75, 83, 81);
+        font-size: larger;
+        font-weight: bold;
+        border: 0.5px  solid grey;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 5px;
+        padding-right: 300px;
+        box-shadow: 0px 5px 5px 0px rgb(54, 53, 53);
+      }
+
+#rbtn{
+        cursor: pointer;
+        text-align: center;
+        margin-left: -50px;
+        color:rgb(75, 83, 81);
+        font-size: larger;
+        font-weight: bold;
+        border: 0.5px  solid grey;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 250px;
+        padding-right: 5px;
+        box-shadow: 0px 5px 5px 0px rgb(54, 53, 53);
+}
+
+.group 			  { 
+  position:relative; 
+  margin-bottom:45px; 
+}
+.input 				{
+  font-size:18px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  width:300px;
+  border:none;
+  border-bottom:1px solid #757575;
+}
+.input:focus 		{ outline:none; }
+
+
+label 				 {
+  color:rgb(102, 102, 102); 
+  font-size:18px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:5px;
+  top:10px;
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+
+.input:focus ~ label, .input:valid ~ label 		{
+  top:-20px;
+  font-size:14px;
+  color:rgb(102, 102, 102);
+}
+
+
+.bar 	{ 
+    position:relative; 
+    display:block; 
+    width:300px; 
+    }
+.bar:before, .bar:after 	{
+  content:'';
+  height:2px; 
+  width:0;
+  bottom:1px; 
+  position:absolute;
+  background:plum; 
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+.bar:before {
+  left:50%;
+}
+.bar:after {
+  right:50%; 
+}
+
+.input:focus ~ .bar:before, .input:focus ~ .bar:after {
+  width:50%;
+}
+
+.highlight {
+  position:absolute;
+  height:60%; 
+  width:100px; 
+  top:25%; 
+  left:0;
+  pointer-events:none;
+  opacity:0.5;
+}
+
+
+.input:focus ~ .highlight {
+  -webkit-animation:inputHighlighter 0.3s ease;
+  -moz-animation:inputHighlighter 0.3s ease;
+  animation:inputHighlighter 0.3s ease;
+}
+
+
+@-webkit-keyframes .inputHighlighter {
+	from { background:#5264AE; }
+  to 	{ width:0; background:transparent; }
+}
+@-moz-keyframes .inputHighlighter {
+	from { background:#5264AE; }
+  to 	{ width:0; background:transparent; }
+}
+@keyframes .inputHighlighter {
+	from { background:#5264AE; }
+  to 	{ width:0; background:transparent; }
+}
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+  
+        <h2>Create Review Post</h2>
+        <h2>{{ error }}</h2>
+        <form method="POST" enctype="multipart/form-data" >
+            {% csrf_token %}
+
+          <div class="group">      
+            {{ form.content_name|add_class:'input' }}
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Title</label>
+          </div>
+            
+          <div class="group">      
+            {{ form.content|add_class:'input' }}
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Content</label>
+          </div>
+          <div class="group">      
+            {{ form.photos|add_class:'input' }}
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Photo</label>
+          </div>
+
+          <button type="submit" id="rbtn">Post</button>
+        </form>
+            
+        <br><br>
+           <a href="/reviewpost" id="map2">Back</a> 
+        
+      </div>
+
+</body>
+</html>

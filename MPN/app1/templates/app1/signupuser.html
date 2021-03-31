@@ -1,0 +1,89 @@
+{% load static %}
+{% load widget_tweaks %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.3.0/font-awesome-animation.min.css">
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+    <link rel="icon" type="image/png"  href="{% static 'images/icon.png' %}">
+    <title>MPN Signup</title>
+</head>
+<div class="top-header">
+</div>
+
+<body>
+    
+
+<div id="mainCoantiner">
+  <div class="main-header">
+  <div class="folio-btn">
+    <a class="folio-btn-item ajax" href="{% url 'loginuser' %}">
+        <span class="folio-btn-dot">
+        </span><span class="folio-btn-dot"></span>
+        <span class="folio-btn-dot"></span><span class="folio-btn-dot">        </span>
+        <span class="folio-btn-dot"></span>
+        <span class="folio-btn-dot"></span>
+        <span class="folio-btn-dot"></span>
+        <span class="folio-btn-dot"></span>
+        <span class="folio-btn-dot"></span>
+    </a>
+  </div>
+</div>
+
+
+<div>
+  <div class="starsec"></div>
+  <div class="starthird"></div>
+  <div class="starfourth"></div>
+  <div class="starfifth"></div>
+</div>
+
+
+<div class="container text-center text-white mt-5">
+  <div class="row">
+    <div class="col-lg-4 d-block mx-auto mt-5">
+      <div class="row">
+        <div class="col-xl-12 col-md-12 col-md-12">
+          <div class="card">
+            <div class="card-body wow-bg" id="formBg">
+              <h3 class="colorboard">Sign Up</h3>
+
+              <p class="incolor">Sign Up for new account</p>
+
+
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+              <div class="input-group mb-3"> 
+                  {{ form.username|add_class:'form-control textbox-dg'|attr:"placeholder:username" }}
+                </div>
+                <div class="input-group mb-4"> 
+                    {{ form.email|add_class:'form-control textbox-dg'|attr:"placeholder:email" }}
+                  </div>
+                  <div class="input-group mb-4"> 
+                    {{ form.password1|add_class:'form-control textbox-dg'|attr:"placeholder:password" }}
+                  </div>
+              <div class="input-group mb-4"> 
+                {{ form.password2|add_class:'form-control textbox-dg'|attr:"placeholder:repeat password" }}
+                  
+                </div>
+
+              <div class="row">
+                <div class="col-12"> <button type="submit" class="btn btn-primary btn-block logn-btn">Sign up</button> </div>
+            </form>
+                <div class="col-12"> <a href="/login" class="incolor2"> Already have an account?</a> </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+</html>

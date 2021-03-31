@@ -1,0 +1,82 @@
+{% extends 'app1/base.html' %}
+{% load static %}
+{% block content %}
+<div class="preload">
+    <img class="airplane" src="{% static 'images/LogoMakr-2yVqk6.png' %}" alt="airplane">
+    <h3>please wait...</h3>
+    <img class="cloud1" src="{% static 'images/LogoMakr-4xuIuN.png' %}" alt="cloud1">
+    <img class="cloud2" src="{% static 'images/LogoMakr-4xuIuN.png' %}">
+    <img class="cloud3" src="{% static 'images/LogoMakr-4xuIuN.png' %}" alt="cloud3">
+  </div>  
+
+
+  <div class="cd-header">
+
+    
+    <div class="header-wrapper">
+        <div class="logo-wrap">
+            <a href="/" class="hover-target"><span>Meal Planning</span>NoteBook</a>
+        </div>
+        <div class="nav-but-wrap">
+            <div class="menu-icon hover-target">
+                <span class="menu-icon__line menu-icon__line-left"></span>
+                <span class="menu-icon__line"></span>
+                <span class="menu-icon__line menu-icon__line-right"></span>
+            </div>					
+        </div>					
+    </div>				
+</div>
+
+<div class="nav">
+    <div class="nav__content">
+        <ul class="nav__list">
+            <li class="nav__list-item"><a href="/" class="hover-target">home</a></li>
+            <li class="nav__list-item"><a href="{% url 'about' %}" class="hover-target">My Profile</a></li>
+            <li class="nav__list-item"><a href="{% url 'review_post' %}" class="hover-target">Food Review</a></li>
+            <li class="nav__list-item"><a href="{% url 'recipepost' %}" class="hover-target">Recipe Calender</a></li>
+            <li class="nav__list-item"><a href="{% url 'map' %}" class="hover-target">Neighborhood Food Maps</a></li>
+            <li class="nav__list-item"><form method="POST" action="{% url 'logoutuser' %}">
+                {% csrf_token %}
+            <button type="submit">Log Out</button></form></li>
+        </ul>
+    </div>
+</div>		
+
+<div class="section full-height over-hide">	
+    <div class="switch-wrap">
+        <div id="switch" class="hover-target">
+            <div id="circle"></div>
+        </div>
+        <p><span>dark</span> - <span>light</span></p>
+        
+    </div>
+    
+      </div>
+      
+</div>
+    
+
+<div class='cursor' id="cursor"></div>
+<div class='cursor2' id="cursor2"></div>
+<div class='cursor3' id="cursor3"></div>
+ 
+<div id="about">
+<img id="aboutimg" src="{{ user.profile.profile_pic.url }}" width="100px">
+
+<legend>Profile Info</legend><br><br><br>
+<div class="about2">Username:{{ user.username }}</div> <br><br>
+<div class="about2">Name: {{ user.profile.name }}</div><br><br>
+<div class="about2">Email: {{ user.email }}</div><br><br>
+<div class="about2">Phone: {{ user.profile.phone }}</div> <br><br>
+<div class="header-wrapper">
+    <div class="logo-wrap">
+        <a href="/profile" class="hover-target"><span>Update</span>info</a>
+    </div>
+    </div>
+
+
+</div><br><br>
+    
+{% endblock %}
+
+

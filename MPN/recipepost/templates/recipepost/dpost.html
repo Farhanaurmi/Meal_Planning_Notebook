@@ -1,0 +1,116 @@
+
+{% extends 'reviewpost/base.html' %}
+{% load static %}
+{% block content %}
+<div class="preload">
+    <img class="airplane" src="{% static 'images/LogoMakr-2yVqk6.png' %}" alt="airplane">
+    <h3>please wait...</h3>
+    <img class="cloud1" src="{% static 'images/LogoMakr-4xuIuN.png' %}" alt="cloud1">
+    <img class="cloud2" src="{% static 'images/LogoMakr-4xuIuN.png' %}">
+    <img class="cloud3" src="{% static 'images/LogoMakr-4xuIuN.png' %}" alt="cloud3">
+  </div>  
+
+
+  <div class="cd-header">
+
+    
+    <div class="header-wrapper">
+        <div class="logo-wrap">
+            <a href="/" class="hover-target"><span>Meal Planning</span>NoteBook</a>
+        </div>
+        <div class="nav-but-wrap">
+            <div class="menu-icon hover-target">
+                <span class="menu-icon__line menu-icon__line-left"></span>
+                <span class="menu-icon__line"></span>
+                <span class="menu-icon__line menu-icon__line-right"></span>
+            </div>					
+        </div>					
+    </div>				
+</div>
+
+<div class="nav">
+    <div class="nav__content">
+        <ul class="nav__list">
+            <li class="nav__list-item"><a href="/" class="hover-target">home</a></li>
+            <li class="nav__list-item"><a href="{% url 'creviewpost' %}" class="hover-target">Create Post</a></li>
+            <li class="nav__list-item"><a href="{% url 'mypost' %}" class="hover-target">My Post</a></li>
+            <li class="nav__list-item"><a href="{% url 'about' %}" class="hover-target">My Profile</a></li>
+
+            <li class="nav__list-item"><form method="POST" action="{% url 'logoutuser' %}">
+                {% csrf_token %}
+            <button type="submit">Log Out</button></form></li>
+        </ul>
+    </div>
+</div>		
+
+<div class="section full-height over-hide">	
+    <div class="switch-wrap">
+        <div id="switch" class="hover-target">
+            <div id="circle"></div>
+        </div>
+        <p><span>dark</span> - <span>light</span></p>
+        
+    </div>
+  
+      </div>
+
+</div>
+    
+
+<div class='cursor' id="cursor"></div>
+<div class='cursor2' id="cursor2"></div>
+<div class='cursor3' id="cursor3"></div>
+
+<div id="review">   
+   
+    <div id="section">
+    <div id="username"> 
+        <img src="{{ dd.user.profile.profile_pic.url }}" alt="user image" width="40px" id="reviewimg1"> 
+        {{ dd.user }} 
+    </div>
+
+    <div id="rdate"> 
+        <small> {{ dd.date_created|date:'M j Y H:i' }} </small> 
+    </div>
+
+   
+        <div id="cname"> {{ dd.title|safe }} </div>
+        <div id="cname2"> {{ dd.recipe|safe }} </div>
+   
+
+    <div id="reviewimg2">
+        <img src="{{ dd.photos.url }}" alt="a" width="200px"> 
+    </div>
+
+    </div>
+    <br>
+
+</div>
+<style>
+    #people{
+        margin-left: 23%;
+    }
+</style>
+
+<div id="people" ><img src="{% static 'images/people.png' %}" width="50px" alt="">&nbsp;&nbsp;{{ dd.no_of_ratings }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="{% static 'images/star.png' %}" width="46px" alt="">&nbsp;&nbsp;{{ dd.avg_ratings|floatformat:1 }} <br> <br>
+
+<form action="{% url 'rate' dd.sno  %}" method="post">
+  {% csrf_token %}
+  <label for="rate">Rating:</label>
+
+  <select id="rate" name="score">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select>
+  <input type="submit" value="Submit">
+</form> 
+</div>
+
+    
+{% endblock %}
+
+  
