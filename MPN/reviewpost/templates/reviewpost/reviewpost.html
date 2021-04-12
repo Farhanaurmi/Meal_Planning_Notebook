@@ -34,6 +34,8 @@
             <li class="nav__list-item"><a href="{% url 'creviewpost' %}" class="hover-target">Create Post</a></li>
             <li class="nav__list-item"><a href="{% url 'mypost' %}" class="hover-target">My Post</a></li>
             <li class="nav__list-item"><a href="{% url 'about' %}" class="hover-target">My Profile</a></li>
+            <li class="nav__list-item"><a href="{% url 'recipepost' %}" class="hover-target">Recipe Calender</a></li>
+            <li class="nav__list-item"><a href="{% url 'map' %}" class="hover-target">Neighborhood Food Maps</a></li>
 
             <li class="nav__list-item"><form method="POST" action="{% url 'logoutuser' %}">
                 {% csrf_token %}
@@ -73,12 +75,14 @@
     </div>
 
     <a href="{% url 'dreviewpost' i.sno %}">
-        <div id="cname"> {{ i.content_name|safe|truncatechars:50 }} </div>
-    </a> 
+        <div id="cname"> {{ i.content_name|safe|truncatechars:50 }} </div><br>
+        <div id="cname2"> {{ i.content|safe|truncatechars:50 }} </div>
+        <div id="reviewimg2">
+            <img src="{{ i.photos.url }}" alt="a" width="200px"> 
+        </div>
+    </a> <br>
 
-    <div id="reviewimg2">
-        <img src="{{ i.photos.url }}" alt="a" width="200px"> 
-    </div>
+
 
     </div>
     <br><br><br>

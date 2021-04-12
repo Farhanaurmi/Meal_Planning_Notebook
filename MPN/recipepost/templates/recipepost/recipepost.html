@@ -33,6 +33,8 @@
             <li class="nav__list-item"><a href="/" class="hover-target">home</a></li>
             <li class="nav__list-item"><a href="{% url 'cpost' %}" class="hover-target">Create Recipe</a></li>
             <li class="nav__list-item"><a href="{% url 'about' %}" class="hover-target">My Profile</a></li>
+            <li class="nav__list-item"><a href="{% url 'review_post' %}" class="hover-target">Food Review</a></li>
+            <li class="nav__list-item"><a href="{% url 'map' %}" class="hover-target">Neighborhood Food Maps</a></li>
 
             <li class="nav__list-item"><form method="POST" action="{% url 'logoutuser' %}">
                 {% csrf_token %}
@@ -73,11 +75,13 @@
    
     <a href="{% url 'dpost' i.sno %}">
         <div id="cname"> {{ i.title|safe|truncatechars:50 }} </div>
+        <div id="cname2"> {{ i.recipe|safe|truncatechars:50 }} </div>
+        <div id="reviewimg2">
+            <img src="{{ i.photos.url }}" alt="a" width="200px"> 
+        </div>
     </a> 
 
-    <div id="reviewimg2">
-        <img src="{{ i.photos.url }}" alt="a" width="200px"> 
-    </div>
+    
 
     </div>
     <br><br><br>

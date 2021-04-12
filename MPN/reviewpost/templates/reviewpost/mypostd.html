@@ -1,4 +1,3 @@
-
 {% extends 'reviewpost/base.html' %}
 {% load static %}
 {% block content %}
@@ -8,12 +7,12 @@
     <img class="cloud1" src="{% static 'images/LogoMakr-4xuIuN.png' %}" alt="cloud1">
     <img class="cloud2" src="{% static 'images/LogoMakr-4xuIuN.png' %}">
     <img class="cloud3" src="{% static 'images/LogoMakr-4xuIuN.png' %}" alt="cloud3">
-  </div>  
+  </div>
 
 
   <div class="cd-header">
 
-    
+
     <div class="header-wrapper">
         <div class="logo-wrap">
             <a href="/" class="hover-target"><span>Meal Planning</span>NoteBook</a>
@@ -23,9 +22,9 @@
                 <span class="menu-icon__line menu-icon__line-left"></span>
                 <span class="menu-icon__line"></span>
                 <span class="menu-icon__line menu-icon__line-right"></span>
-            </div>					
-        </div>					
-    </div>				
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="nav">
@@ -33,63 +32,75 @@
         <ul class="nav__list">
             <li class="nav__list-item"><a href="/" class="hover-target">home</a></li>
             <li class="nav__list-item"><a href="{% url 'creviewpost' %}" class="hover-target">Create Post</a></li>
+            <li class="nav__list-item"><a href="/reviewpost" class="hover-target">Review Post</a></li>
             <li class="nav__list-item"><a href="{% url 'mypost' %}" class="hover-target">My Post</a></li>
             <li class="nav__list-item"><a href="{% url 'about' %}" class="hover-target">My Profile</a></li>
+            <li class="nav__list-item"><a href="{% url 'recipepost' %}" class="hover-target">Recipe Calender</a></li>
+            <li class="nav__list-item"><a href="{% url 'map' %}" class="hover-target">Neighborhood Food Maps</a></li>
+
 
             <li class="nav__list-item"><form method="POST" action="{% url 'logoutuser' %}">
                 {% csrf_token %}
             <button type="submit">Log Out</button></form></li>
         </ul>
     </div>
-</div>		
+</div>
 
-<div class="section full-height over-hide">	
+<div class="section full-height over-hide">
     <div class="switch-wrap">
         <div id="switch" class="hover-target">
             <div id="circle"></div>
         </div>
         <p><span>dark</span> - <span>light</span></p>
-        
+
     </div>
-  
+
       </div>
 
 </div>
-    
+
 
 <div class='cursor' id="cursor"></div>
 <div class='cursor2' id="cursor2"></div>
 <div class='cursor3' id="cursor3"></div>
 
-<div id="review">   
-   
+<div id="review">
+
     <div id="section">
-    <div id="username"> 
-        <img src="{{ user.profile.profile_pic.url }}" alt="user image" width="40px" id="reviewimg1"> 
-        {{ dd.user }} 
+    <div id="username">
+        <img src="{{ user.profile.profile_pic.url }}" alt="user image" width="40px" id="reviewimg1">
+        {{ dd.user }}
     </div>
 
-    <div id="rdate"> 
-        <small> {{ dd.date_created }} </small> 
+    <div id="rdate">
+        <small> {{ dd.date_created }} </small>
     </div>
 
-   
+
         <div id="cname"> {{ dd.content_name|safe }} </div>
         <div id="cname2"> {{ dd.content|safe }} </div>
-   
+
 
     <div id="reviewimg2">
-        <img src="{{ dd.photos.url }}" alt="a" width="200px"> 
+        <img src="{{ dd.photos.url }}" alt="a" width="200px">
     </div>
 
     </div>
     <br><br><br>
 
 </div>
+<style>
+    #dlt{
+        margin-left: 26%;
+    }
+</style>
+
 <form method="POST" action="{% url 'mypostdelete' dd.sno %}" enctype="multipart/form-data">
     {% csrf_token %}
-    <button type="submit">Delete</button>
+    <div id="dlt">
+    <button type="submit" class="btn btn-outline-secondary">Delete</button>
+    </div>
 </form>
-    
-{% endblock %}
+<br><br><br>
 
+{% endblock %}
